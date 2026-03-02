@@ -20,7 +20,7 @@ function App() {
       const n = Math.sqrt(nums.length);
       return (
         <div style={{ marginTop: '10px', fontSize: '0.85rem', color: '#6D565A' }}>
-          <p style={{ marginBottom: '8px', fontWeight: 'bold' }}>⚠️ Aturan: Masukkan angka kunci PER BARIS.</p>
+          <p style={{ marginBottom: '6px', fontWeight: 'bold' }}>⚠️Aturan: Masukkan angka kunci PER BARIS.</p>
           {Number.isInteger(n) && n >= 2 && (
             <div style={{ display: 'grid', gridTemplateColumns: `repeat(${n}, 1fr)`, gap: '8px', background: '#F8EDEF', padding: '12px', borderRadius: '10px', border: '1px solid #E3BFC3' }}>
               {nums.map((num, idx) => (
@@ -77,25 +77,51 @@ function App() {
     const cleanKey = keyStr.toUpperCase().replace(/J/g, "I").replace(/[^A-Z]/g, '');
     const used = new Set();
     const matrix = [];
-    for (let char of cleanKey + alphabet) { if (!used.has(char)) { matrix.push(char); used.add(char); } }
+    
+    for (let char of cleanKey + alphabet) { 
+      if (!used.has(char)) { 
+        matrix.push(char); 
+        used.add(char); 
+      } 
+    }
+    
     let cleanText = text.toUpperCase().replace(/J/g, "I").replace(/[^A-Z]/g, '');
+    
     if (!isDecrypt) {
       let temp = "";
       for (let i = 0; i < cleanText.length; i++) {
         temp += cleanText[i];
-        if (i + 1 < cleanText.length && cleanText[i] === cleanText[i + 1] && temp.length % 2 !== 0) temp += 'Q';
+       
+        if (i + 1 < cleanText.length && cleanText[i] === cleanText[i + 1] && temp.length % 2 !== 0) {
+          temp += 'X';
+        }
       }
-      if (temp.length % 2 !== 0) temp += 'Q';
+      
+      if (temp.length % 2 !== 0) temp += 'X';
       cleanText = temp;
     }
+
     let result = "";
     for (let i = 0; i < cleanText.length; i += 2) {
-      let a = cleanText[i], b = cleanText[i + 1];
-      let posA = matrix.indexOf(a), posB = matrix.indexOf(b);
-      let rA = Math.floor(posA/5), cA = posA%5, rB = Math.floor(posB/5), cB = posB%5;
-      if (rA === rB) { result += matrix[rA*5 + (cA+(isDecrypt?4:1))%5] + matrix[rB*5 + (cB+(isDecrypt?4:1))%5]; }
-      else if (cA === cB) { result += matrix[((rA+(isDecrypt?4:1))%5)*5 + cA] + matrix[((rB+(isDecrypt?4:1))%5)*5 + cB]; }
-      else { result += matrix[rA*5 + cB] + matrix[rB*5 + cA]; }
+      let a = cleanText[i];
+      let b = cleanText[i + 1];
+      let posA = matrix.indexOf(a);
+      let posB = matrix.indexOf(b);
+      let rA = Math.floor(posA / 5), cA = posA % 5;
+      let rB = Math.floor(posB / 5), cB = posB % 5;
+
+      if (rA === rB) {
+       
+        result += matrix[rA * 5 + (cA + (isDecrypt ? 4 : 1)) % 5];
+        result += matrix[rB * 5 + (cB + (isDecrypt ? 4 : 1)) % 5];
+      } else if (cA === cB) {
+        
+        result += matrix[((rA + (isDecrypt ? 4 : 1)) % 5) * 5 + cA];
+        result += matrix[((rB + (isDecrypt ? 4 : 1)) % 5) * 5 + cB];
+      } else {
+        result += matrix[rA * 5 + cB]; 
+        result += matrix[rB * 5 + cA]; 
+      }
     }
     return result;
   };
