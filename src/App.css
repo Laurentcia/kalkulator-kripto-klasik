@@ -1,0 +1,178 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  background-color: #fff0f2; 
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 40px,
+      rgba(227, 191, 195, 0.4) 40px,
+      rgba(227, 191, 195, 0.4) 80px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(227, 191, 195, 0.4) 40px,
+      rgba(227, 191, 195, 0.4) 80px
+    );
+
+  color: #4D393B; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  background-color: #ffffff; 
+  padding: 40px;
+  border-radius: 24px; 
+  
+ 
+  box-shadow:
+    0 10px 20px -5px rgba(221, 122, 131, 0.15), 
+    0 4px 6px -2px rgba(221, 122, 131, 0.05);
+    
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid rgba(221, 122, 131, 0.08); 
+
+  position: relative;
+  z-index: 1;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app-container:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 25px -5px rgba(221, 122, 131, 0.2),
+    0 10px 10px -5px rgba(221, 122, 131, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #DD7A83;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+h1::before, h1::after {
+  content: "";
+  height: 3px;
+  flex-grow: 1;
+  background: linear-gradient(90deg, #E3BFC3, #DD7A83, #E3BFC3);
+  border-radius: 2px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(221, 122, 131, 0.3), rgba(0, 0, 0, 0));
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #6D565A; 
+  letter-spacing: 0.5px;
+  text-transform: uppercase; 
+}
+
+
+input, select, textarea {
+  padding: 12px 16px;
+  border: 1px solid #E3BFC3; 
+  border-radius: 12px; 
+  font-size: 1rem;
+  font-family: inherit;
+  color: #4D393B;
+  background-color: #fafafa;
+  
+  
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #DD7A83; 
+  box-shadow: 0 0 0 3px rgba(221, 122, 131, 0.15);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical; 
+}
+
+.action-area {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0 25px 0;
+}
+
+button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; 
+}
+
+button:active {
+  transform: scale(0.97); 
+}
+
+.btn-encrypt {
+  background-color: #DD7A83;
+  color: white;
+  box-shadow: 0 4px 10px rgba(221, 122, 131, 0.2);
+}
+
+.btn-encrypt:hover {
+  background-color: #C9666E;
+  box-shadow: 0 6px 15px rgba(221, 122, 131, 0.3);
+  transform: translateY(-2px); 
+}
+
+.btn-decrypt {
+  background-color: #E3BFC3;
+  color: #4D393B;
+  border: 1px solid rgba(110, 86, 90, 0.15); 
+  box-shadow: 0 4px 10px rgba(227, 191, 195, 0.2);
+}
+
+.btn-decrypt:hover {
+  background-color: #D6ACB1;
+  box-shadow: 0 6px 15px rgba(227, 191, 195, 0.3);
+  transform: translateY(-2px);
+}
+
+.output-box {
+  background-color: #F8EDEF;
+  border-color: #E3BFC3;
+  color: #6D565A;
+  cursor: text; 
+}
