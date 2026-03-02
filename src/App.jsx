@@ -7,14 +7,12 @@ function App() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
 
-  // --- HELPER MATH ---
   const mod26 = (n) => ((n % 26) + 26) % 26;
   const modInverse = (a, m) => {
     for (let x = 1; x < m; x++) if ((a * x) % m === 1) return x;
     return -1;
   };
 
-  // --- FUNGSI TAMPILAN MATRIKS (UX Hill Cipher) ---
   const renderMatrixPreview = () => {
     if (algorithm !== 'hill' || !key) return null;
     const nums = key.split(',').map(k => k.trim()).filter(k => k !== "");
@@ -37,8 +35,6 @@ function App() {
     );
   };
 
-  // --- LOGIKA ALGORITMA ---
-  // (Caesar, Vigenere, Playfair, Affine, OTP tetap sama seperti sebelumnya)
   const caesarCipher = (text, shiftStr, isDecrypt = false) => {
     let shift = parseInt(shiftStr, 10);
     if (isNaN(shift)) return '(Error: Kunci harus angka!)';
@@ -211,8 +207,8 @@ function App() {
         <textarea placeholder="Ketik pesan..." value={inputText} onChange={(e) => setInputText(e.target.value)}></textarea>
       </div>
       <div className="action-area">
-        <button className="btn-encrypt" onClick={() => handleAction(false)}>🔒 Enkripsi</button>
-        <button className="btn-decrypt" onClick={() => handleAction(true)}>🔓 Dekripsi</button>
+        <button className="btn-encrypt" onClick={() => handleAction(false)}> Enkripsi</button>
+        <button className="btn-decrypt" onClick={() => handleAction(true)}> Dekripsi</button>
       </div>
       <div className="form-group">
         <label>Hasil (Ciphertext):</label>
